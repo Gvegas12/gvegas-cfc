@@ -1,18 +1,26 @@
-export enum ModeEnum {
-  SINGLE = "single",
-  MULTIPLE = "multiple",
-}
+// export enum ModeEnum {
+//   SINGLE = "single",
+//   MULTIPLE = "multiple",
+// }
 
-export type ConfigReplaceOption =
-  | {
-      filename: boolean;
-    }
-  | string;
+// export type ConfigReplaceOption =
+//   | {
+//       filename: boolean;
+//     }
+//   | string;
+
+export enum AvailableConfigExtensionsEnum {
+  JS = "js",
+  TS = "ts",
+  YML = "yml",
+  YAML = "yaml",
+  JSON = "json",
+}
 
 export interface IConfig {
   [template: string]: {
-    mode: ModeEnum;
     path: string;
-    replace: ConfigReplaceOption;
+    // mode: ModeEnum;
+    // replace: ConfigReplaceOption;
   };
 }

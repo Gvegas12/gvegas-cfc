@@ -1,64 +1,67 @@
 import fs from "fs";
-import Logger from "./lib/logger";
-import { InputType } from "./types/input.types";
-import switchConfigFileExtension from "./helpers/switchConfigFileExtension";
-import { ModeEnum } from "./types/config.types";
-import singleMode from "./mods/single";
-import multipleMode from "./mods/multiple";
 import path from "path";
 
-const rootPath = process.env.pwd;
+import Logger from "./lib/logger";
+import {
+  getConfigKeys,
+  getFilenameData,
+  switchConfigFileExtension,
+} from "./helpers";
 
-const config = ({
-  inputFileNameForBuild,
+import type { InputType } from "./types/input.types";
+
+const rootPath = process.env.pwd;
+const configFilenameRegExp = /^cfc\.config\.?.+/m;
+
+const config = async ({
+  inputFilenameForBuild,
   inputPathToBuild,
   inputTemplateName,
 }: InputType) => {
   const filesFromRootPath = fs.readdirSync(rootPath);
   const configFileOfAnyExtension = filesFromRootPath.filter((file) =>
-    /^crc\.config\.?.+/m.exec(file)
+    configFilenameRegExp.exec(file)
   );
 
   if (configFileOfAnyExtension.length > 1) {
     Logger({
-      name: "CRC CONFIG FILE",
-      message: "Найдено более одного конфигурационного файла. Ожидалось 1.",
+      name: "CONFIG FILE",
+      message: `Найдено более одного конфигурационного файла ${configFileOfAnyExtension[0]}`,
     });
     return;
   }
   if (!configFileOfAnyExtension.length) {
     Logger({
-      name: "CRC CONFIG FILE",
-      message: "Конфигурационный файл не найден. Ожидалось 1.",
+      name: "CONFIG FILE",
+      message: `Конфигурационный файл не найден.`,
     });
     return;
   }
 
-  const configObject = switchConfigFileExtension(configFileOfAnyExtension[0]);
-
-  const currentMode = configObject[inputTemplateName].mode;
-  const pathToTemplate = path.join(
-    rootPath,
-    configObject[inputTemplateName].path
+  const configObject = await switchConfigFileExtension(
+    configFileOfAnyExtension[0]
   );
-  const replaceOption = configObject[inputTemplateName].replace;
+  const { path: pathToTemplate } = getConfigKeys(
+    configObject,
+    inputTemplateName
+  );
 
-  if (currentMode === ModeEnum.SINGLE) {
-    singleMode({
-      pathToTemplate,
-      replaceOption,
-      inputFileNameForBuild,
-      inputPathToBuild,
-    });
-  }
-  if (currentMode === ModeEnum.MULTIPLE) {
-    multipleMode({
-      pathToTemplate,
-      replaceOption,
-      inputFileNameForBuild,
-      inputPathToBuild,
-    });
-  }
+  const absolutePathToTemplate = path.join(rootPath, pathToTemplate);
+  const { filename, fileExtension } = getFilenameData(absolutePathToTemplate);
+
+  const templateFile = fs.readFileSync(absolutePathToTemplate, "utf-8");
+
+  const buildFilename = `${inputFilenameForBuild}.${fileExtension}`;
+  fs.writeFileSync(
+    path.resolve(inputPathToBuild, buildFilename),
+    templateFile.replaceAll(filename, inputFilenameForBuild)
+  );
+
+  Logger({
+    name: "SIMPLE MODE",
+    message: `The ${buildFilename} file has been created successfully`,
+    type: "success",
+  });
 };
 
 export default config;

@@ -1,11 +1,1 @@
 node_modules
-*.css
-*.svg
-public/
-
-dist/
-
-build/
-.storybook/
-*.config.ts
-*.config.js

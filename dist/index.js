@@ -24,7 +24,7 @@ const start = () => {
         cli_1.default.showHelp(0);
     }
     (0, src_1.default)({
-        inputFileNameForBuild: input[2],
+        inputFilenameForBuild: input[2],
         inputPathToBuild: input[1],
         inputTemplateName: input[0],
     });

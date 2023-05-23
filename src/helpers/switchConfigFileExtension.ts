@@ -1,25 +1,36 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { IConfig } from "../types/config.types";
 import fs from "fs";
 import yaml from "js-yaml";
+import path from "path";
 
-export default (configFileName: string): IConfig => {
-  // const extension = configFileName.slice(11);
+import { AvailableConfigExtensionsEnum, IConfig } from "../types/config.types";
 
+const rootPath = process.env.pwd;
+
+const getYAMLConfig = (configFileName: string): IConfig => {
   return yaml.load(fs.readFileSync(configFileName, "utf8")) as IConfig;
-  // switch (extension) {
-  //   case "yml" || "yaml": {
-  //     console.log(configFileName);
-  //     return yaml.load(fs.readFileSync(configFileName, "utf8"));
-  //   }
-  //   case "js" || "ts": {
-  //     console.log(configFileName);
-  //   }
-  //   case "json": {
-  //     console.log(configFileName);
-  //   }
-  //   default: {
-  //     console.log("default", configFileName);
-  //   }
-  // }
+};
+const getJSConfig = async (configFileName: string): Promise<IConfig> => {
+  const config = await import(path.join(rootPath, configFileName));
+  return config.default as IConfig;
+};
+
+export const switchConfigFileExtension = async (
+  configFileName: string
+): Promise<IConfig> => {
+  const extension = configFileName.slice(11);
+
+  switch (extension) {
+    case AvailableConfigExtensionsEnum.YAML: {
+      return getYAMLConfig(configFileName);
+    }
+    case AvailableConfigExtensionsEnum.YML: {
+      return getYAMLConfig(configFileName);
+    }
+    case AvailableConfigExtensionsEnum.JS: {
+      return getJSConfig(configFileName);
+    }
+    case AvailableConfigExtensionsEnum.JSON: {
+      return getJSConfig(configFileName);
+    }
+  }
 };

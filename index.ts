@@ -23,7 +23,7 @@ const start = () => {
     cli.showHelp(0);
   }
   config({
-    inputFileNameForBuild: input[2],
+    inputFilenameForBuild: input[2],
     inputPathToBuild: input[1],
     inputTemplateName: input[0],
   });

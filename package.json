@@ -1,18 +1,17 @@
 {
-  "name": "create-file-cli",
-  "description": "Create file from Templates",
+  "name": "cfc",
+  "description": "Create file from Template",
   "version": "0.0.1",
   "license": "UNLICENSED",
   "bin": {
-    "create-file-cli": "index.js"
+    "cfc": "index.js"
   },
   "author": {
     "name": "gvegas",
-    "email": "gvegassam@gmail.com",
     "url": "https://t.me/gvegasss"
   },
   "keywords": [
-    "create-file-cli",
+    "cfc",
     "gvegas"
   ],
   "files": [
