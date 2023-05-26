@@ -22,7 +22,7 @@
   "scripts": {
     "format": "prettier --write \"./**/*.{js,json}\"",
     "build": "tsc",
-    "publish": "npm run build && npm version patch && npm publish"
+    "publish": "npm version patch && npm publish"
   },
   "peerDependencies": {
     "node": "*"
