@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const logger_1 = __importDefault(require("./lib/logger"));
 const helpers_1 = require("./helpers");
 const rootPath = process.env.pwd;
@@ -25,27 +26,17 @@ const config = async ({ inputFilenameForBuild, inputPathToBuild, inputTemplateNa
         });
         return;
     }
-    const test = await (0, helpers_1.switchConfigFileExtension)(configFileOfAnyExtension[0]);
-    console.log(test);
-    // const configObject = yaml.load(
-    //   fs.readFileSync(configFileOfAnyExtension[0], "utf8")
-    // ) as IConfig;
-    // const { path: pathToTemplate } = getConfigKeys(
-    //   configObject,
-    //   inputTemplateName
-    // );
-    // const absolutePathToTemplate = path.join(rootPath, pathToTemplate);
-    // const { filename, fileExtension } = getFilenameData(absolutePathToTemplate);
-    // const templateFile = fs.readFileSync(absolutePathToTemplate, "utf-8");
-    // const buildFilename = `${inputFilenameForBuild}.${fileExtension}`;
-    // fs.writeFileSync(
-    //   path.resolve(inputPathToBuild, buildFilename),
-    //   templateFile.replaceAll(filename, inputFilenameForBuild)
-    // );
-    // Logger({
-    //   name: "SIMPLE MODE",
-    //   message: `The ${buildFilename} file has been created successfully`,
-    //   type: "success",
-    // });
+    const configObject = await (0, helpers_1.switchConfigFileExtension)(configFileOfAnyExtension[0]);
+    const { path: pathToTemplate } = (0, helpers_1.getConfigKeys)(configObject, inputTemplateName);
+    const absolutePathToTemplate = path_1.default.join(rootPath, pathToTemplate);
+    const { filename, fileExtension } = (0, helpers_1.getFilenameData)(absolutePathToTemplate);
+    const templateFile = fs_1.default.readFileSync(absolutePathToTemplate, "utf-8");
+    const buildFilename = `${inputFilenameForBuild}.${fileExtension}`;
+    fs_1.default.writeFileSync(path_1.default.resolve(inputPathToBuild, buildFilename), templateFile.replaceAll(filename, inputFilenameForBuild));
+    (0, logger_1.default)({
+        name: "SIMPLE MODE",
+        message: `The ${buildFilename} file has been created successfully`,
+        type: "success",
+    });
 };
 exports.default = config;
