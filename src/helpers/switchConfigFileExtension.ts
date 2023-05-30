@@ -33,4 +33,4 @@ export const switchConfigFileExtension = async (
       return getJSConfig(configFileName);
     }
   }
-};
+}

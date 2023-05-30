@@ -1,5 +1,3 @@
-import { getConfigKeys } from "./getConfigKeys";
-import { getFilenameData } from "./getFilenameData";
-import { switchConfigFileExtension } from "./switchConfigFileExtension";
-
-export { getConfigKeys, getFilenameData, switchConfigFileExtension };
+export { getConfigKeys } from "./getConfigKeys";
+export { getFilenameData } from "./getFilenameData";
+export { switchConfigFileExtension } from "./switchConfigFileExtension";

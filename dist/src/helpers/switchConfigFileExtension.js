@@ -52,7 +52,6 @@ const switchConfigFileExtension = async (configFileName) => {
             return getJSConfig(configFileName);
         }
         case config_types_1.AvailableConfigExtensionsEnum.JSON: {
-            console.log(extension);
             return getJSConfig(configFileName);
         }
     }

@@ -1,14 +1,13 @@
 import fs from "fs";
 import path from "path";
 
-import Logger from "./lib/logger";
-import {
-  getConfigKeys,
-  getFilenameData,
-  switchConfigFileExtension,
-} from "./helpers";
+import { single } from "./modes/single";
+import { multiple } from "./modes/multiple";
 
+import Logger from "./lib/logger";
+import { ModeEnum } from "./types/config.types";
 import type { InputType } from "./types/input.types";
+import { getConfigKeys, switchConfigFileExtension } from "./helpers";
 
 const rootPath = process.env.pwd;
 const configFilenameRegExp = /^cfc\.config\.?.+/m;
@@ -41,27 +40,29 @@ const config = async ({
   const configObject = await switchConfigFileExtension(
     configFileOfAnyExtension[0]
   );
-  const { path: pathToTemplate } = getConfigKeys(
+
+  const { path: pathToTemplate, mode } = getConfigKeys(
     configObject,
     inputTemplateName
   );
 
   const absolutePathToTemplate = path.join(rootPath, pathToTemplate);
-  const { filename, fileExtension } = getFilenameData(absolutePathToTemplate);
 
-  const templateFile = fs.readFileSync(absolutePathToTemplate, "utf-8");
-
-  const buildFilename = `${inputFilenameForBuild}.${fileExtension}`;
-  fs.writeFileSync(
-    path.resolve(inputPathToBuild, buildFilename),
-    templateFile.replaceAll(filename, inputFilenameForBuild)
-  );
-
-  Logger({
-    name: "SIMPLE MODE",
-    message: `The ${buildFilename} file has been created successfully`,
-    type: "success",
-  });
+  if (mode === ModeEnum.MULTIPLE) {
+    multiple({
+      rootPath,
+      inputPathToBuild,
+      inputFilenameForBuild,
+      absolutePathToTemplate,
+    });
+  }
+  if (mode === ModeEnum.SINGLE) {
+    single({
+      inputPathToBuild,
+      inputFilenameForBuild,
+      absolutePathToTemplate,
+    });
+  }
 };
 
 export default config;

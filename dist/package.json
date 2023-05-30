@@ -1,10 +1,10 @@
 {
-    "name": "cfc",
+    "name": "gvegas-cfc",
     "description": "Create file from Template",
     "version": "0.0.1",
     "license": "UNLICENSED",
     "bin": {
-        "cfc": "index.js"
+        "gvegas-cfc": "dist/index.js"
     },
     "author": {
         "name": "gvegas",
@@ -12,16 +12,17 @@
     },
     "keywords": [
         "cfc",
-        "gvegas"
+        "gvegas",
+        "gvegas-cfc",
+        "@gvegas"
     ],
     "files": [
-        "index.js",
-        "bin",
-        "src"
+        "dist/**/*"
     ],
     "scripts": {
         "format": "prettier --write \"./**/*.{js,json}\"",
-        "build": "tsc"
+        "build": "tsc",
+        "pub": "git stash && npm version patch && git stash pop && tsc && npm publish"
     },
     "peerDependencies": {
         "node": "*"
