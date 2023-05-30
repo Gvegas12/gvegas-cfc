@@ -1,7 +1,7 @@
 {
   "name": "gvegas-cfc",
   "description": "Create file from Template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "UNLICENSED",
   "bin": {
     "gvegas-cfc": "dist/index.js"
@@ -22,7 +22,7 @@
   "scripts": {
     "format": "prettier --write \"./**/*.{js,json}\"",
     "build": "tsc",
-    "pub": "npm version patch && tsc && npm publish"
+    "pub": "npm version patch --force && tsc && npm publish"
   },
   "peerDependencies": {
     "node": "*"
