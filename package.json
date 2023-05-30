@@ -1,7 +1,7 @@
 {
   "name": "gvegas-cfc",
   "description": "Create file from Template",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "license": "UNLICENSED",
   "bin": {
     "gvegas-cfc": "dist/index.js"
@@ -14,7 +14,14 @@
     "cfc",
     "gvegas",
     "gvegas-cfc",
-    "@gvegas"
+    "@gvegas",
+    "create-cli",
+    "create-file",
+    "create",
+    "file",
+    "create-react-cli",
+    "create-react-components",
+    "create-files-cli"
   ],
   "files": [
     "dist/**/*"
