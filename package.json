@@ -1,7 +1,7 @@
 {
   "name": "cfc",
   "description": "Create file from Template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "UNLICENSED",
   "bin": {
     "cfc": "index.js"
