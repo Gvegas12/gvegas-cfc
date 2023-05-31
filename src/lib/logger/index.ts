@@ -1,3 +1,4 @@
+// @ts-ignore
 import alert from "cli-alerts";
 
 type LoggerType = {

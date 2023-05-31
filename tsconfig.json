@@ -7,8 +7,15 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
+    "lib": ["es2015"],
+    "sourceMap": false,
+    "declaration": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {

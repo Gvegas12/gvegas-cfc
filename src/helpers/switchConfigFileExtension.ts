@@ -2,7 +2,7 @@ import fs from "fs";
 import yaml from "js-yaml";
 import path from "path";
 
-import { AvailableConfigExtensionsEnum, IConfig } from "../types/config.types";
+import { AvailableConfigExtensionsEnum, IConfig } from "@/types/config.types";
 
 const rootPath = process.env.pwd;
 
@@ -33,4 +33,4 @@ export const switchConfigFileExtension = async (
       return getJSConfig(configFileName);
     }
   }
-}
+};

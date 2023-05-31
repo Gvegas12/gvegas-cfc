@@ -1,4 +1,4 @@
-import type { IConfig } from "../types/config.types";
+import type { IConfig } from "@/types/config.types";
 
 export const getConfigKeys = <T extends string>(
   configFile: IConfig,

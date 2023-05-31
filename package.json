@@ -28,8 +28,8 @@
   ],
   "scripts": {
     "format": "prettier --write \"./**/*.{js,json}\"",
-    "build": "tsc",
-    "pub": "npm version patch --force && tsc && npm publish"
+    "build": "rm -rf dist && tsc && rm -rf dist/index.d.ts",
+    "pub": "npm version patch --force && npm run build && npm publish"
   },
   "peerDependencies": {
     "node": "*"

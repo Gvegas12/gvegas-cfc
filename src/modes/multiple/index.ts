@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
-import Logger from "../../lib/logger";
+
+import Logger from "@/lib/logger";
 import { single } from "../single";
-import { InputType } from "../../types/input.types";
-import { ModeEnum } from "../../types/config.types";
+import { InputType } from "@/types/input.types";
+import { ModeEnum } from "@/types/config.types";
 
 const checkFolder = (pathToFolder: string) => {
   try {

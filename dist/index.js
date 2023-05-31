@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const init_js_1 = __importDefault(require("./bin/init.js"));
 const cli_1 = __importDefault(require("./bin/cli"));
-const src_1 = __importDefault(require("./src"));
+const src_1 = require("./src");
 // import log from "./bin/log";
 const { input } = cli_1.default;
 const { flags } = cli_1.default;
@@ -23,7 +23,7 @@ const start = () => {
     if (input.includes("--help" || "-h" || "help")) {
         cli_1.default.showHelp(0);
     }
-    (0, src_1.default)({
+    (0, src_1.config)({
         inputFilenameForBuild: input[2],
         inputPathToBuild: input[1],
         inputTemplateName: input[0],

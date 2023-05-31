@@ -12,7 +12,7 @@ import { getConfigKeys, switchConfigFileExtension } from "./helpers";
 const rootPath = process.env.pwd;
 const configFilenameRegExp = /^cfc\.config\.?.+/m;
 
-const config = async ({
+export const config = async ({
   inputFilenameForBuild,
   inputPathToBuild,
   inputTemplateName,
@@ -64,5 +64,3 @@ const config = async ({
     });
   }
 };
-
-export default config;

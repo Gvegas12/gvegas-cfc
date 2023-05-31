@@ -9,7 +9,7 @@
 
 import init from "./bin/init.js";
 import cli from "./bin/cli";
-import config from "./src";
+import { config } from "./src";
 // import log from "./bin/log";
 
 const { input } = cli;
