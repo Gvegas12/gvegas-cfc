@@ -1,7 +1,7 @@
 {
   "name": "gvegas-cfc",
   "description": "Create file from Template",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "license": "UNLICENSED",
   "bin": {
     "gvegas-cfc": "dist/index.js"
