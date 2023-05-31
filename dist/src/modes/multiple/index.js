@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.multiple = void 0;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const logger_1 = __importDefault(require("@/lib/logger"));
+const logger_1 = __importDefault(require("../../lib/logger"));
 const single_1 = require("../single");
-const config_types_1 = require("@/types/config.types");
+const config_types_1 = require("../../types/config.types");
 const checkFolder = (pathToFolder) => {
     try {
         const files = fs_1.default.readdirSync(pathToFolder);

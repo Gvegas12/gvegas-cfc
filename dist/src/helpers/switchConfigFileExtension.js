@@ -30,7 +30,7 @@ exports.switchConfigFileExtension = void 0;
 const fs_1 = __importDefault(require("fs"));
 const js_yaml_1 = __importDefault(require("js-yaml"));
 const path_1 = __importDefault(require("path"));
-const config_types_1 = require("@/types/config.types");
+const config_types_1 = require("../types/config.types");
 const rootPath = process.env.pwd;
 const getYAMLConfig = (configFileName) => {
     return js_yaml_1.default.load(fs_1.default.readFileSync(configFileName, "utf8"));

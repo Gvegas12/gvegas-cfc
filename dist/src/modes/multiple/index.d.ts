@@ -1,4 +1,4 @@
-import { InputType } from "@/types/input.types";
+import { InputType } from "../../types/input.types";
 interface IMultipleProps extends Pick<InputType, "inputFilenameForBuild" | "inputPathToBuild"> {
     absolutePathToTemplate: string;
     rootPath: string;
