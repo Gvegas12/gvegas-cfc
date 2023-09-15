@@ -1,7 +1,7 @@
 {
   "name": "gvegas-cfc",
   "description": "Create file from Template",
-  "version": "0.0.23",
+  "version": "1.0.0",
   "license": "MIT",
   "bin": {
     "gvegas-cfc": "dist/index.js"
@@ -28,7 +28,6 @@
   ],
   "scripts": {
     "version": "npm run changelog && git add CHANGELOG.md",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "build": "rm -rf dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "pub": "npm version major && npm run build && npm publish"
   },
@@ -37,15 +36,14 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "js-yaml": "^4.1.0",
     "commander": "^11.0.0",
-    "inquirer": "^9.2.11"
+    "inquirer": "^9.2.11",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.3",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^20.6.0",
-    "conventional-changelog": "^5.1.0",
     "eslint": "^8.40.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.27.5",
