@@ -4,7 +4,7 @@
   "version": "3.0.1",
   "license": "MIT",
   "bin": {
-    "gvegas-cfc": "dist/index.js"
+    "gvegas-cfc": "dist/index.mjs"
   },
   "author": {
     "name": "gvegas",
