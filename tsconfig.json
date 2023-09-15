@@ -7,20 +7,15 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleResolution": "NodeNext",
-    "lib": ["es2015"],
+    "lib": ["ESNext"],
     "sourceMap": false,
     "declaration": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
     }
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "templates"]
 }
