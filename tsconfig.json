@@ -6,7 +6,7 @@
     "target": "ESNext",
     "allowJs": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "lib": ["es2015"],
     "sourceMap": false,
     "declaration": true,

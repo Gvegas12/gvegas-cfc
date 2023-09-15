@@ -63,8 +63,6 @@ module.exports = {
         devDependencies: [
           "**/*.test.tsx",
           "**/*.spec.ts",
-          "**/*.stories.tsx",
-
           /* webpack config */
           "config/webpack/*.ts",
         ],

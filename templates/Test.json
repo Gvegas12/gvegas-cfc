@@ -1,0 +1,7 @@
+{
+  "charset": "1",
+  "max_ram_usage": "2",
+  "max_cpu_usage": "3",
+  "check_updates_interval": "4",
+  "processes_count": "5"
+}
