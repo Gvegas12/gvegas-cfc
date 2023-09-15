@@ -1,7 +1,7 @@
 {
   "name": "gvegas-cfc",
   "description": "Create file from Template",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "bin": {
     "gvegas-cfc": "dist/index.js"
@@ -27,7 +27,6 @@
     "dist/**/*"
   ],
   "scripts": {
-    "version": "npm run changelog && git add CHANGELOG.md",
     "build": "rm -rf dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "pub": "npm version major && npm run build && npm publish"
   },
