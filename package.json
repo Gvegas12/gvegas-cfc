@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "pub": "npm version patch && npm run build && npm publish"
+    "pub": "npm version patch && npm run build && npm publish && git add . && git commit -m 'publish last version to npm.' && git push"
   },
   "peerDependencies": {
     "node": "*"
