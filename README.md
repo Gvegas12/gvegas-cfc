@@ -4,19 +4,17 @@
 
 Умеет генерировать файлы любых расширений.
 
+`npm:`
 ```bash
 npm install --save-dev gvegas-cfc
 ```
 
-## Режимы
+`yarn:`
+```bash
+yarn add -D gvegas-cfc
+```
 
-Поддерживает два режима:
-
-**`single`** - генерация единичных файлов
-
-**`multiple`** - генерация директорий с вложенностью.
-
-## Настройка
+<!-- ## Настройка
 
 ### 1. Файл конфигурации:
 
@@ -45,9 +43,9 @@ PageComponent:
 ```ts
 path: string;
 mode: "multiple" | "single";
-```
+``` -->
 
-### 2. Папка с шаблонами:
+### Папка с шаблонами:
 
 Создайте в корне проекта папку с любым удобным для вас названием.
 Например, создадим родительскую папку `templates`.
@@ -88,18 +86,19 @@ mode: "multiple" | "single";
 │
 ```
 
-### 3. Скрипт для создания файлов
+### Скрипт для создания файлов
+"create:ui": "npx gvegas-cfc create -t ./templates/UITemplate -o ./output UITest"
+Скрипт принимает 3 аргумента:
 
-Команда `gvegas-cfc` принимает 3 аргумента:
+- `-t | --template`. <br>
+Название шаблона (Название папки шаблона, например `UIComponent`).
+- `-o | --output` <br> Путь, куда должны сгенерироваться файлы.
+- Название сгенерированного файла
 
-1. Название шаблона (Название мы задавали в конгурационном файле)
-2. Путь, куда должны сгенерироваться файлы
-3. Название сгенерированного файла
-
-Мы можем запустить:
+Запускаем:
 
 ```bash
-npx gvegas-cfc PageComponent ./src/pages MainPage
+npx gvegas-cfc create -t ./templates/UITemplate -o ./output UITest
 ```
 
 Но проще будет добавить `scripts` в `package.json`:
@@ -108,8 +107,7 @@ npx gvegas-cfc PageComponent ./src/pages MainPage
 {
 ...
     "scripts": {
-        "create:page": "gvegas-cfc PageComponent ./src/pages/",
-        "create:ui": "gvegas-cfc UIComponent ./src/shared/UI/"
+        "create:ui": "npx gvegas-cfc create -t ./templates/UITemplate -o ./output"
     },
 ...
 }
@@ -117,14 +115,17 @@ npx gvegas-cfc PageComponent ./src/pages MainPage
 
 После этого мы можем запустить:
 
+`npm:`
 ```bash
-npm run create:page MainPage
+npm run create:ui UITest
 ```
 
 или
 
+`yarn:`
+
 ```bash
-npm run create:ui UI
+yarn create:ui UITest
 ```
 
 Настройка `gvegas-cfc` завершена!
