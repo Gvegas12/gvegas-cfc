@@ -1,7 +1,7 @@
 {
     "name": "gvegas-cfc",
     "description": "Create file from Template",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "license": "MIT",
     "bin": {
         "gvegas-cfc": "dist/index.mjs"
@@ -28,7 +28,7 @@
     ],
     "scripts": {
         "build": "rm -rf dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-        "pub": "npm version patch --force && npm run build &&  git add . && git commit -m 'publish last version to npm.' && npm publish && git push"
+        "pub": "npm version patch --force && npm run build &&  git add . && git commit -m \"publish last version to npm.\" && npm publish && git push"
     },
     "dependencies": {
         "chalk": "^4.1.2",
