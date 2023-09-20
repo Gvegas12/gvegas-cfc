@@ -1,25 +1,24 @@
 #!/usr/bin/env node
 import { join } from "path";
 import { Command } from "commander";
-import { FileService } from "./src/services/index.js";
+import { FileService } from "./src/core/services/index.js";
 import * as p from "./package.json" assert { type: "json" };
 const commander = new Command();
 commander.version(p.default.version).description("template file creator.");
-const DEFAULT_TEMPLATES_FOLDER_NAME = "templates";
 commander
     .command("create <name>")
     .requiredOption("-t, --template <path | base_template_name>", "Template name.")
     .requiredOption("-o, --output <path>", "Output path.")
     .alias("c")
     .description("Create files.")
-    .action((name, { output, template }) => {
+    .action(async (name, { output, template }) => {
     console.log({
         name,
         output,
-        template,
+        template: join(template),
     });
-    // node dist/index.mjs create -t UITemplate -o ./ UITest
-    new FileService().create(join(DEFAULT_TEMPLATES_FOLDER_NAME, template), output, name);
+    // teminal: node dist/index.mjs create -t UITemplate -o ./ UITest
+    new FileService().create(join(template), output, name);
 });
 commander.parse(process.argv);
 // import chalk from "chalk";
