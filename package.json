@@ -1,7 +1,7 @@
 {
   "name": "gvegas-cfc",
   "description": "Create file from Template",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "license": "MIT",
   "bin": {
     "gvegas-cfc": "dist/index.mjs"
