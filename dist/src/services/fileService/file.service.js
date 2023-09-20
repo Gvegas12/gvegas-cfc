@@ -8,20 +8,11 @@ const replaceTemplate = (filename, replace) => {
 };
 class FileService {
     create(pathToTemplate, pathToOutput, outputFilename) {
-        (0, fs_1.mkdirSync)(pathToOutput, { recursive: true });
-        (0, fs_1.readdirSync)(pathToTemplate).forEach((name) => {
-            const rootFilenameData = this.getFilenameData(name);
-            const currentPathToOutput = (0, path_1.join)(pathToOutput, replaceTemplate(name, outputFilename));
-            const currentPathToTemplate = (0, path_1.join)(pathToTemplate, name);
-            if (rootFilenameData.extension) {
-                const content = (0, fs_1.readFileSync)(currentPathToTemplate, "utf-8");
-                (0, fs_1.writeFileSync)(currentPathToOutput, replaceTemplate(content, outputFilename));
-            }
-            else {
-                (0, fs_1.mkdirSync)(currentPathToOutput, { recursive: true });
-                this.create(currentPathToTemplate, currentPathToOutput, outputFilename);
-            }
-        });
+        const outputPath = (0, path_1.join)(pathToOutput, outputFilename);
+        if (!this.getFilenameData(outputFilename).extension) {
+            (0, fs_1.mkdirSync)(outputPath, { recursive: true });
+        }
+        this.createNestedFiles(pathToTemplate, outputPath, outputFilename);
     }
     getByName(filenameWithExtension) {
         const content = (0, fs_1.readFileSync)(filenameWithExtension, "utf8");
@@ -45,6 +36,22 @@ class FileService {
             name,
             extension,
         };
+    }
+    createNestedFiles(pathToTemplate, pathToOutput, outputFilename) {
+        (0, fs_1.mkdirSync)(pathToOutput, { recursive: true });
+        (0, fs_1.readdirSync)(pathToTemplate).forEach((name) => {
+            const rootFilenameData = this.getFilenameData(name);
+            const currentPathToOutput = (0, path_1.join)(pathToOutput, replaceTemplate(name, outputFilename));
+            const currentPathToTemplate = (0, path_1.join)(pathToTemplate, name);
+            if (rootFilenameData.extension) {
+                const content = (0, fs_1.readFileSync)(currentPathToTemplate, "utf-8");
+                (0, fs_1.writeFileSync)(currentPathToOutput, replaceTemplate(content, outputFilename));
+            }
+            else {
+                (0, fs_1.mkdirSync)(currentPathToOutput, { recursive: true });
+                this.createNestedFiles(currentPathToTemplate, currentPathToOutput, outputFilename);
+            }
+        });
     }
 }
 exports.FileService = FileService;

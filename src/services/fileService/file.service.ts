@@ -14,29 +14,13 @@ export class FileService implements FileRepository {
     pathToOutput: string,
     outputFilename: string
   ): void {
-    mkdirSync(pathToOutput, { recursive: true });
+    const outputPath = join(pathToOutput, outputFilename);
 
-    readdirSync(pathToTemplate).forEach((name) => {
-      const rootFilenameData = this.getFilenameData(name);
-      const currentPathToOutput = join(
-        pathToOutput,
-        replaceTemplate(name, outputFilename)
-      );
-      const currentPathToTemplate = join(pathToTemplate, name);
+    if (!this.getFilenameData(outputFilename).extension) {
+      mkdirSync(outputPath, { recursive: true });
+    }
 
-      if (rootFilenameData.extension) {
-        const content = readFileSync(currentPathToTemplate, "utf-8");
-
-        writeFileSync(
-          currentPathToOutput,
-          replaceTemplate(content, outputFilename)
-        );
-      } else {
-        mkdirSync(currentPathToOutput, { recursive: true });
-
-        this.create(currentPathToTemplate, currentPathToOutput, outputFilename);
-      }
-    });
+    this.createNestedFiles(pathToTemplate, outputPath, outputFilename);
   }
 
   getByName(filenameWithExtension: FileModel["name"]): FileModel {
@@ -65,5 +49,39 @@ export class FileService implements FileRepository {
       name,
       extension,
     };
+  }
+
+  private createNestedFiles(
+    pathToTemplate: string,
+    pathToOutput: string,
+    outputFilename: string
+  ) {
+    mkdirSync(pathToOutput, { recursive: true });
+
+    readdirSync(pathToTemplate).forEach((name) => {
+      const rootFilenameData = this.getFilenameData(name);
+      const currentPathToOutput = join(
+        pathToOutput,
+        replaceTemplate(name, outputFilename)
+      );
+      const currentPathToTemplate = join(pathToTemplate, name);
+
+      if (rootFilenameData.extension) {
+        const content = readFileSync(currentPathToTemplate, "utf-8");
+
+        writeFileSync(
+          currentPathToOutput,
+          replaceTemplate(content, outputFilename)
+        );
+      } else {
+        mkdirSync(currentPathToOutput, { recursive: true });
+
+        this.createNestedFiles(
+          currentPathToTemplate,
+          currentPathToOutput,
+          outputFilename
+        );
+      }
+    });
   }
 }

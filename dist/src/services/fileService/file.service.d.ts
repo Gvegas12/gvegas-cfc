@@ -7,4 +7,5 @@ export declare class FileService implements FileRepository {
         name: string;
         extension: string;
     };
+    private createNestedFiles;
 }

@@ -26,6 +26,12 @@ commander
   .alias("c")
   .description("Create files.")
   .action((name: string, { output, template }: ICreateCommandOptions) => {
+    console.log({
+      name,
+      output,
+      template,
+    });
+// node dist/index.mjs create -t UITemplate -o ./ UITest
     new FileService().create(
       join(DEFAULT_TEMPLATES_FOLDER_NAME, template),
       output,

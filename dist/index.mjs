@@ -13,6 +13,12 @@ commander
     .alias("c")
     .description("Create files.")
     .action((name, { output, template }) => {
+    console.log({
+        name,
+        output,
+        template,
+    });
+    // node dist/index.mjs create -t UITemplate -o ./ UITest
     new FileService().create(join(DEFAULT_TEMPLATES_FOLDER_NAME, template), output, name);
 });
 commander.parse(process.argv);
