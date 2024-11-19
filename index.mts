@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { join,  resolve } from "path";
+import { join,  /* resolve */ } from "path";
 import { Command } from "commander";
-import { FileService, ConfigFileService } from "@/core/services/index.js";
-import * as p from "./package.json" assert { type: "json" };
+import { FileService, /* ConfigFileService */ } from "@/core/services/index.js";
+import * as p from "./package.json" with { type: "json" };
 
 const commander = new Command();
 

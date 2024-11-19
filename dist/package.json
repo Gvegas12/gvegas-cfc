@@ -28,7 +28,7 @@
     ],
     "scripts": {
         "build": "rm -rf dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-        "pub": "npm version patch --force && npm run build &&  git add . && git commit -m \"publish last version to npm.\" && npm publish && git push"
+        "pub": "npm version patch && npm publish"
     },
     "dependencies": {
         "chalk": "^4.1.2",
@@ -39,15 +39,14 @@
     "devDependencies": {
         "@types/inquirer": "^9.0.3",
         "@types/js-yaml": "^4.0.5",
-        "@types/node": "^20.6.0",
+        "@types/node": "^22.9.1",
         "eslint": "^8.40.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-jest": "^27.2.1",
         "eslint-plugin-node": "^11.1.0",
-        "tsc-alias": "^1.8.7",
+        "tsc-alias": "^1.8.10",
         "tsconfig-paths": "^4.2.0",
-        "typedoc": "^0.25.1",
-        "typescript": "^5.2.2"
+        "typescript": "^5.6.3"
     }
 }

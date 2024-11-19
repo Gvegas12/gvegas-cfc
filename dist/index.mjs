@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { join } from "path";
+import { join, /* resolve */ } from "path";
 import { Command } from "commander";
-import { FileService } from "./src/core/services/index.js";
-import * as p from "./package.json" assert { type: "json" };
+import { FileService, /* ConfigFileService */ } from "./src/core/services/index.js";
+import * as p from "./package.json" with { type: "json" };
 const commander = new Command();
 commander.version(p.default.version).description("template file creator.");
 commander
