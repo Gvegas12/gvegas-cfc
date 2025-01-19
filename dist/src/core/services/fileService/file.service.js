@@ -4,8 +4,6 @@ exports.FileService = void 0;
 const fs_1 = require("fs");
 const path_1 = require("path");
 const replaceTemplate = (filename, replace) => {
-    if (filename === "<template>" || filename === "</template>")
-        return;
     return filename.replace(/Template/gim, replace);
 };
 class FileService {
