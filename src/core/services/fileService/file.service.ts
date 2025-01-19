@@ -5,6 +5,7 @@ import { FileModel } from "@/core/entities";
 import { FileRepository } from "@/core/repositories";
 
 const replaceTemplate = (filename: string, replace: string) => {
+  if (filename === "<template>" || filename === "</template>") return;
   return filename.replace(/Template/gim, replace);
 };
 

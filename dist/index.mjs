@@ -9,6 +9,7 @@ commander
     .command("create <name>")
     .requiredOption("-t, --template <path | base_template_name>", "Template name.")
     .requiredOption("-o, --output <path>", "Output path.")
+    .option("-v, --vue", "Vue template.")
     .alias("c")
     .description("Create files.")
     .action(async (name, { output, template }) => {

@@ -21,6 +21,7 @@ commander
     "Template name."
   )
   .requiredOption("-o, --output <path>", "Output path.")
+  .option("-v, --vue", "Vue template.")
   .alias("c")
   .description("Create files.")
   .action(async (name: string, { output, template }: ICreateCommandOptions) => {
@@ -30,7 +31,7 @@ commander
       template: join(template),
     });
     // teminal: node dist/index.mjs create -t UITemplate -o ./ UITest
-    new FileService().create(join(template), output, name);
+    new FileService().create(join(template), output, name, );
   });
 
 commander.parse(process.argv);
